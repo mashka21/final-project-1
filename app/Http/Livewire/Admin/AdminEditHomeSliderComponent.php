@@ -17,22 +17,22 @@ class AdminEditHomeSliderComponent extends Component
     public $image;
     public $status;
     public $newimage;
-    public $slider_id;
+    public $slide_id;
 
-    public function mount($slider_id) {
-        $slider = HomeSlider::find($slider_id);
+    public function mount($slide_id) {
+        $slider = HomeSlider::find($slide_id);
         $this->title = $slider->title;
         $this->subtitle = $slider->subtitle;
         $this->price = $slider->price;
         $this->link = $slider->link;
         $this->image = $slider->image;
         $this->status = $slider->status;
-        $this->slider_id = $slider->id;  
+        $this->slide_id = $slider->id;  
 
     }
 
     public function updateSlide() {
-        $slider = HomeSlider::find($this->slider_id);
+        $slider = HomeSlider::find($this->slide_id);
         $slider->title = $this->title;
         $slider->subtitle = $this->subtitle;
         $slider->price = $this->price;
