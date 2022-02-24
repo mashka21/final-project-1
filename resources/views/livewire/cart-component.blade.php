@@ -29,7 +29,11 @@
                         <div class="product-name">
                             <a class="link-to-product" href="{{route('product.details',['slug'=>$item->model->slug])}}">{{$item->model->name}}</a>
                         </div>
-                        <div class="price-field produtc-price"><p class="price">${{$item->model->regular_price}}</p></div>
+                        @if ($item->model->sale_price > 0 && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
+                            <div class="price-field produtc-price"><p class="price">${{$item->model->sale_price}}</p></div>
+                        @else
+                            <div class="price-field produtc-price"><p class="price">${{$item->model->regular_price}}</p></div>
+                        @endif
                         <div class="quantity">
                             <div class="quantity-input">
                                 <input type="text" name="product-quatity" value="{{$item->qty}}" data-max="120" pattern="[0-9]*" >									
