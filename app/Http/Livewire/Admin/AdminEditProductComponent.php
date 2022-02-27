@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
@@ -49,14 +50,40 @@ class AdminEditProductComponent extends Component
         $this->slug = Str::slug($this->name,'-');
     }
 
+    public function updated($fields) {
+        $this->validateOnly($fields,[
+            'name' =>'required',
+            'slug' => 'required|unique:products',
+            'short_description'=>'required',
+            'description'=>'required',
+            'regular_price'=>'required|numeric',
+            'sale_price'=>'required|numeric',
+            'SKU'=>'required',
+            'stock_status'=>'required',
+            'quantity'=>'required|numeric',
+            'category_id'=>'required'
+        ]);
+    }
+
     public function updateProduct() {
+        $this->validate([
+            'name' =>'required',
+            'slug'=>['required', Rule::unique('products')->ignore($this->product_id,'id')],
+            'short_description'=>'required',
+            'description'=>'required',
+            'regular_price'=>'required|numeric',
+            'SKU'=>'required',
+            'stock_status'=>'required',
+            'quantity'=>'required|numeric',
+            'category_id'=>'required'
+        ]);
         $product = Product::find($this->product_id);
         $product->name = $this->name;
         $product->slug = $this->slug;
         $product->short_description = $this->short_description;
         $product->description = $this->description;
         $product->regular_price = $this->regular_price;
-        $product->sale_price = $this->sale_price;
+        $product->sale_price = (!$this->sale_price ? null : $this->sale_price);
         $product->SKU = $this->SKU;
         $product->stock_status = $this->stock_status;
         $product->featured = $this->featured;
