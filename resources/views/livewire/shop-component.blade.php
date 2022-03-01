@@ -71,7 +71,7 @@
                         color: #ff7007;
                     }
                     .fill-heart {
-                        color: #ff7007;
+                        color: #ff7007 !important;
                     }
                 </style>
                 <div class="row">
@@ -96,7 +96,7 @@
                                         @if ($witems->contains($product->id))
                                             <a href="#"><i class="fa fa-heart fill-heart"></i></a>
                                         @else
-                                            <a href="#" wire:click.prevent="addToWishlist"><i class="fa fa-heart"></i></a>
+                                            <a href="#" wire:click.prevent="addToWishlist({{$product->id}}, '{{$product->name}}',{{$product->regular_price}})"><i class="fa fa-heart"></i></a>
                                         @endif
                                     </div>
                                 </div>
