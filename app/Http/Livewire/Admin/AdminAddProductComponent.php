@@ -41,7 +41,7 @@ class AdminAddProductComponent extends Component
             'short_description'=>'required',
             'description'=>'required',
             'regular_price'=>'required|numeric',
-            'sale_price'=>'required',
+            'sale_price'=>'required|numeric',
             'SKU'=>'required',
             'stock_status'=>'required',
             'quantity'=>'required|numeric',
@@ -57,7 +57,7 @@ class AdminAddProductComponent extends Component
             'short_description'=>'required',
             'description'=>'required',
             'regular_price'=>'required|numeric',
-            'sale_price'=>'required',
+            
             'SKU'=>'required',
             'stock_status'=>'required',
             'quantity'=>'required|numeric',
@@ -70,7 +70,7 @@ class AdminAddProductComponent extends Component
         $product->short_description = $this->short_description;
         $product->description = $this->description;
         $product->regular_price = $this->regular_price;
-        $product->sale_price = $this->sale_price;
+        $product->sale_price = (!$this->sale_price ? null : $this->sale_price);
         $product->SKU = $this->SKU;
         $product->stock_status = $this->stock_status;
         $product->featured = $this->featured;
