@@ -9,9 +9,7 @@
             </ul>
         </div>
         <div class="row">
-
             <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
-
                 <div class="banner-shop">
                     <a href="#" class="banner-link">
                         <figure><img src="{{asset('assets/images/shop-banner.jpg')}}" alt=""></figure>
