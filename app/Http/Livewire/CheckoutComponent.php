@@ -37,6 +37,8 @@ class CheckoutComponent extends Component
 
     public $paymentmode;
 
+    public $thankyou;
+
 
     public function updated($fields)
     {
@@ -155,15 +157,32 @@ class CheckoutComponent extends Component
             $transaction->save();
         }
 
+        $this->thankyou = 1;
         Cart::instance('cart')->destroy();
         session()->forget('checkout');
 
+    }
 
+    public function verifyForCheckout() 
+    {
+        if(!Auth::check())
+        {
+            return redirect()->route('login');
+        }
+        else if($this->thankyou)
+        {
+            return redirect()->route('thankyou');
+        }
+        else if(!session()->get('checkout'))
+        {
+            return redirect()->route('product.cart');
+        }
     }
 
 
     public function render()
     {
+        $this->verifyForCheckout();
         return view('livewire.checkout-component')->layout("layouts.base");
     }
 }
