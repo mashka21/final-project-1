@@ -159,7 +159,9 @@
                             </label>
                             @error('paymentmode')<span class="text-danger">{{$message}}</span> @enderror
                         </div>
-                        <p class="summary-info grand-total"><span>Grand Total</span> <span class="grand-total-price">$100.00</span></p>
+                        @if (Session::has('checkout'))
+                            <p class="summary-info grand-total"><span>Grand Total</span> <span class="grand-total-price">${{Session::get('checkout')['total']}}</span></p>
+                        @endif
                         <button type="submit" class="btn btn-medium">Place order now</button>
                     </div>
                     <div class="summary-item shipping-method">
