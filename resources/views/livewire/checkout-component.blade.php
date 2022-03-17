@@ -151,6 +151,10 @@
                     <div class="summary-item payment-method">
                         <h4 class="title-box">Payment Method</h4>
                         @if ($paymentmode == 'card')
+                            @if(Session::has('stripe_error'))
+                                <div class="alert alert-danger" role="alert">{{Session::get('stripe_error')}}</div>
+                                
+                            @endif
                             <div class="wrap-address-billing">
                                 <p class="row-in-form">
                                     <label for="card-no">Card Number:</label>

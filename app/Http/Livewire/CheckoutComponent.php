@@ -201,7 +201,7 @@ class CheckoutComponent extends Component
                         $this->thankyou = 0;
                     }
 
-                    $customer = $stripe->customer()->create([
+                    $customer = $stripe->customers()->create([
                         'name' => $this->firstname. ' ' . $this->lastname,
                         'email' => $this->email,
                         'phone' => $this->mobile,
@@ -223,7 +223,7 @@ class CheckoutComponent extends Component
                         'source' => $token['id']
                     ]);
 
-                    $charge = $stripe->charge()->create([
+                    $charge = $stripe->charges()->create([
                         'customer' => $customer['id'],
                         'currency' => 'USD',
                         'amount' => session()->get('checkout')['total'],
