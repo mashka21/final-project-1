@@ -15,9 +15,15 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Choose Categories</label>
                                 <div class="col-md-4" wire:ignore>
-                                    <select class="sel_categories form-control" name="categories[]" multiple="multiple" wire:model="selected_categories">
+                                    <select name="categories[]" multiple="multiple" class="sel_categories form-control" wire:model="selected_categories">
                                         @foreach ($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                            <option
+                                            @if ($selected_categories != null)
+                                                @if (in_array($category->id, $selected_categories))
+                                                    selected
+                                                @endif
+                                            @endif
+                                            value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

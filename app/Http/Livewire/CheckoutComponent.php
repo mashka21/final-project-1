@@ -46,9 +46,7 @@ class CheckoutComponent extends Component
     public $cvc;
 
 
-
-    public function updated($fields)
-    {
+    public function updated($fields) {
         $this->validateOnly($fields,[
             'firstname' => 'required',
             'lastname' => 'required',
@@ -62,8 +60,7 @@ class CheckoutComponent extends Component
             'paymentmode'=>'required',
         ]);
 
-        if($this->ship_to_different)
-        {
+        if($this->ship_to_different) {
             $this->validateOnly($fields,[
                 's_firstname' => 'required',
                 's_lastname' => 'required',
@@ -192,7 +189,6 @@ class CheckoutComponent extends Component
                         'exp_month' => $this->exp_month,
                         'exp_year' => $this->exp_year,
                         'cvc' => $this->cvc,
-
                     ]
                     ]);
 
@@ -209,7 +205,8 @@ class CheckoutComponent extends Component
                             'line1' => $this->line1,
                             'postal_code' => $this->zipcode,
                             'city' => $this->province,
-                            'state' => $this->country,
+                            'state' => $this->city,
+                            'country' => $this->country,
                         ],
                         'shipping' => [
                             'name' => $this->firstname. ' ' . $this->lastname,
@@ -217,7 +214,8 @@ class CheckoutComponent extends Component
                                 'line1' => $this->line1,
                                 'postal_code' => $this->zipcode,
                                 'city' => $this->province,
-                                'state' => $this->country,
+                                'state' => $this->city,
+                                'country' => $this->country,
                             ],
                         ],
                         'source' => $token['id']

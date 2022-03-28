@@ -118,6 +118,9 @@
                                                 <li class="menu-item" >
                                                     <a title="Dashboard" href="{{route('user.dashboard')}}">Dashboard</a>
                                                 </li>
+												<li class="menu-item" >
+                                                    <a title="My orders" href="{{route('user.orders')}}">My orders</a>
+                                                </li>
 												<form action="{{route('logout')}}" method="post">
 													@csrf
 													<li class="menu-item" >
