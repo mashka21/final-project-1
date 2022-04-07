@@ -105,6 +105,9 @@
 												<li class="menu-item">
 													<a title="contacts" href="{{route('admin.contact')}}">Contact Messages</a>
 												</li>
+												<li class="menu-item">
+													<a title="settings" href="{{route('admin.settings')}}">Settings</a>
+												</li>
 												<form action="{{route('logout')}}" method="post">
 													@csrf
 													<li class="menu-item" >
