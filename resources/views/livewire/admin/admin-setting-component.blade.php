@@ -7,6 +7,10 @@
                         Settings
                     </div>
                     <div class="panel-body">
+                        @if (Session::has('message'))
+                            <div class="alert alert-success" role="alert">{{Session::get('message')}}</div>
+                            
+                        @endif
                         <form class="form-horizontal" wire:submit.prevent="saveSettings">
                             <div class="form-group">
                                 <label  class="col-md-4 control-label">Email</label>
@@ -19,7 +23,7 @@
                             <div class="form-group">
                                 <label  class="col-md-4 control-label">phone</label>
                                 <div class="col-md-4">
-                                    <input type="text" placeholder="phome" class="form-control input-md" wire:model="pone">
+                                    <input type="text" placeholder="phome" class="form-control input-md" wire:model="phone">
                                     @error('phone') <p class="text-danger">{{$message}}</p>@enderror
                                 </div>
                             </div>
@@ -65,10 +69,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label  class="col-md-4 control-label">piterest</label>
+                                <label  class="col-md-4 control-label">pinterest</label>
                                 <div class="col-md-4">
-                                    <input type="text" placeholder="piterest" class="form-control input-md" wire:model="piterest">
-                                    @error('piterest') <p class="text-danger">{{$message}}</p>@enderror
+                                    <input type="text" placeholder="pinterest" class="form-control input-md" wire:model="pinterest">
+                                    @error('pinterest') <p class="text-danger">{{$message}}</p>@enderror
                                 </div>
                             </div>
 

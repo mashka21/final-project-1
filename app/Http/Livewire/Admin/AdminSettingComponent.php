@@ -14,7 +14,7 @@ class AdminSettingComponent extends Component
     public $map;
     public $twitter;
     public $facebook;
-    public $piterest;
+    public $pinterest;
     public $instagram;
     public $youtube;
 
@@ -30,7 +30,7 @@ class AdminSettingComponent extends Component
             $this->map = $setting->map;
             $this->twitter = $setting->twitter;
             $this->facebook = $setting->facebook;
-            $this->piterest = $setting->piterest;
+            $this->pinterest = $setting->pinterest;
             $this->instagram = $setting->instagram;
             $this->youtube = $setting->youtube;
         }
@@ -47,7 +47,7 @@ class AdminSettingComponent extends Component
             'map' => 'required',
             'twitter' => 'required',
             'facebook' => 'required',
-            'piterest' => 'required',
+            'pinterest' => 'required',
             'instagram' => 'required',
             'youtube' => 'required',
         ]);
@@ -63,27 +63,30 @@ class AdminSettingComponent extends Component
             'map' => 'required',
             'twitter' => 'required',
             'facebook' => 'required',
-            'piterest' => 'required',
+            'pinterest' => 'required',
             'instagram' => 'required',
             'youtube' => 'required',
         ]);
 
-        $setting = Setting::find();
+        $setting = Setting::find(1);
         if(!$setting)
         {
-            $setting->email = $this->email;
-            $setting->phone = $this->phone;
-            $setting->phone2 = $this->phone2;
-            $setting->address = $this->address;
-            $setting->map = $this->map;
-            $setting->twitter = $this->twitter;
-            $setting->facebook = $this->facebook;
-            $setting->piterest = $this->piterest;
-            $setting->instagram = $this->instagram;
-            $setting->youtube = $this->youtube;
-            //$setting->save();
-            session()->flash('message','Setting have saved successfully');
+            $setting = new Setting();
         }
+
+        $setting->email = $this->email;
+        $setting->phone = $this->phone;
+        $setting->phone2 = $this->phone2;
+        $setting->address = $this->address;
+        $setting->map = $this->map;
+        $setting->twitter = $this->twitter;
+        $setting->facebook = $this->facebook;
+        $setting->pinterest = $this->pinterest;
+        $setting->instagram = $this->instagram;
+        $setting->youtube = $this->youtube;
+        $setting->save();
+        session()->flash('message','Setting have saved successfully');
+        
     }
     
     public function render()
