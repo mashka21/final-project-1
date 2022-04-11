@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Shipping;
@@ -9,6 +10,7 @@ use App\Models\Transaction;
 use Cart;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Stripe;
 
@@ -175,7 +177,7 @@ class CheckoutComponent extends Component
 
         if($this->paymentmode == 'cod')
         {
-            $this->makeTransaction($order_id,'pending');
+            $this->makeTransaction($order->id,'pending');
             $this->resetCard();
         }
         else if($this->paymentmode == 'card') 
@@ -245,7 +247,7 @@ class CheckoutComponent extends Component
 
         }
 
-        
+        $this->sendOrderConfirmationMail($order);        
     }
 
 
@@ -263,6 +265,11 @@ class CheckoutComponent extends Component
         $transaction->mode = 'cod';
         $transaction->status = $status;
         $transaction->save();
+    }
+
+    public function sendOrderConfirmationMail($order)
+    {
+        Mail::to($order->email)->send(new OrderMail($order));
     }
 
     public function verifyForCheckout() 
