@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Product;
+use Facade\FlareClient\Stacktrace\File;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,14 +15,16 @@ class AdminProductComponent extends Component
         $product = Product::find($id);
         if($product->image)
         {
-            // unlink('assets/images/products'.'/'.$product->image);
+            unlink('assets/images/products'.'/'.$product->image);
         }
         if($product->images)
         {
-            $img = explode(",",$product->images);
-            foreach($img as $imager)
+            $images = explode("," , $product->images);
+            foreach($images as $image)
             {
-                unlink('assets/images/products'.'/'.$imager);
+                if(!empty($image)){
+                    unlink('assets/images/products'.'/'.$image);
+                }                
             }
         }
         $product->delete();
