@@ -8,7 +8,7 @@
                     <div class="panel-body">
                         <div class="col-md-4">
                             @if ($user->profile->image)
-                                <img src="{{'assets/images/profile'}}/{{$user->profile->image}}" width="100%" alt="">
+                                <img src="{{asset('assets/images/profile')}}/{{$user->profile->image}}" width="100%" alt="">
                             @else
                                 <img src="{{asset('assets/images/profile/profile.png')}}" width="100%" alt="">
                             @endif
@@ -24,7 +24,7 @@
                             <p><b>Province : </b>{{$user->profile->province}}</p>
                             <p><b>Country : </b>{{$user->profile->country}}</p>
                             <p><b>Zip Code : </b>{{$user->profile->zipcode}}</p>
-
+                            <a href="{{route('user.editprofile')}}" class="btn btn-info pull-right">Update Profile</a>
                         </div>
                     </div>
                 </div>
