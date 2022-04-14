@@ -125,6 +125,9 @@
                                                     <a title="Dashboard" href="{{route('user.dashboard')}}">Dashboard</a>
                                                 </li>
 												<li class="menu-item" >
+                                                    <a title="Profile" href="{{route('user.profile')}}">Profile</a>
+                                                </li>
+												<li class="menu-item" >
                                                     <a title="My orders" href="{{route('user.orders')}}">My orders</a>
                                                 </li>
 												<li class="menu-item" >
